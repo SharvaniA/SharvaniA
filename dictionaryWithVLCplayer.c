@@ -6,6 +6,9 @@
 #include "Tools.c"
 int main()
 {
+	
+	
+	
 	char wordToSearch[20];
 	char urlCommandLine[200];
 	char vlcCommandLine[200];
