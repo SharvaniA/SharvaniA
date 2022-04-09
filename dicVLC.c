@@ -21,15 +21,9 @@ int main()
 
 	fpCurlDicFile = fopen("meaning.dat", "r");
 	fgets(data, sizeof(data), fpCurlDicFile);
-	// fwrite(data, 900, 1, fpCurlDicFile);
-	// fclose(fpCurlDicFile);
-
-	// fpCurlDicFile = fopen("meaning.dat", "r");
-	// fread(data, sizeof(data), 1, fpCurlDicFile);
 	partOfData = strtok(data, ":[],{};");
 	while (partOfData != NULL)
 	{
-		//printf("%s\n", partOfData);
 		partOfData = strtok(NULL, ":[],{};");
 		if(strstr(partOfData, "\"definition\"") != NULL)
 		{
@@ -44,13 +38,6 @@ int main()
 			sprintf(vlcCommandLine, "vlc %s\n", partOfData);
 			system(vlcCommandLine);
 		}
-		// else if(strstr(partOfData, "\"meaning\"") != NULL)
-		// {
-		// 	printf("Meaning: ");
-		// 	partOfData = strtok(NULL, ":[],{};");
-		// 	printf("%s\n", partOfData);
-		// 	break;
-		// }
 	}
 	fclose(fpCurlDicFile);
 }
