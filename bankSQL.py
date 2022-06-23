@@ -1,73 +1,73 @@
- # Converting SQLite to MySQL. 
+#  # Converting SQLite to MySQL. 
 
-import mysql.connector as mysql
-# import sqlite3
-import pandas as pd
-HOST = "165.22.14.77"
-DATABASE = "dbSharvani"
-USER = "sharvani"
-PASSWORD = "pwdsharvani"
+# import mysql.connector as mysql
+# # import sqlite3
+# import pandas as pd
+# HOST = "165.22.14.77"
+# DATABASE = "dbSharvani"
+# USER = "sharvani"
+# PASSWORD = "pwdsharvani"
 
-class BankDetailsSQL():
-	def __init__(self):
-		self.connection = mysql.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD)
-		# self.connection = sqlite3.connect("bankDetailsFile.db
-		self.cursor = self.connection.cursor()
-	def create(self):
-		customerId = input("Enter Account Number: ")
-		customerName = input("Enter Name: ")
-		customerBalance = input("Enter Balance: ")
-		self.cursor.execute("""INSERT INTO bankDetails VALUES (%s, %s, %s, %s);""", (customerId, customerName, customerBalance, deleteStatus))
-		self.connection.commit()
-	def display(self):
-		option = int(input("1. In Form Style and 2. Table Style: "))
-		if option == 1:
-			self.cursor.execute("SELECT * FROM bankDetails")
-			self.data = self.cursor.fetchall()
-			for values in self.data:
-				print("Account Number: ", values[0])
-				print("Name: ", values[1])
-				print("Balance: ", values[2])
-		else:
-			print(pd.read_sql_query("SELECT * FROM bankDetails ", self.connection))
-	def search(self):
-		accountNumberToSearch = input("Enter Account Number to search: ")
-		self.cursor.execute("""SELECT * FROM bankDetails WHERE customerId = (%s)""", (accountNumberToSearch, ))
-		self.data = self.cursor.fetchone()
-		print("accountNumber: ", self.data[0])
-		print("Name: ", self.data[1])
-		print("Balance: ", self.data[2])
-	def update(self):
-		self.cursor = self.connection.cursor()
-		accountNumberToSearch = input("Enter Account Number to search: ")
-		customerName = input("Enter Name: ")
-		customerBalance = input("Enter Balance: ")
-		self.cursor.execute('''UPDATE bankDetails SET customerName = %s, customerBalance = %s WHERE customerId = %s''', (customerName, customerBalance, accountNumberToSearch))
-		self.connection.commit()
-	def delete(self):
-		accountNumberToSearch = input("Enter Account Number to search: ")
-		try:
-			self.cursor.execute('''DELETE FROM bankDetails WHERE customerId = %s''', (accountNumberToSearch, ))
-			self.connection.commit()
-		except Exception as err:
-			# print("SELECT ErrorDescription FROM Error WHERE ErrorNumber = %s" %(err.sqlstate))
-			self.cursor.execute('''SELECT ErrorDescription FROM Error WHERE ErrorNumber = %s''' %(err.sqlstate))
-			deleteMessage = self.cursor.fetchall()
-			for message in deleteMessage:
-				for msg in message:
-					print(msg)
-			# print(err.errno)
-			# print(err.sqlstate)
-		print("Account closed")
-	def Exit(self):
-		self.connection.close()
-		exit()
-g = BankDetailsSQL()
-functions = [g.create, g.display, g.search, g.update, g.delete, g.Exit]
-while functions != 6:
-	functions[int(input("1. Create1.\n2. Display.\n3. Search.\n4. Update\n5. Delete.\n6. Exit.\nChoice: "))-1]()
-cursor.close()
-connection.close()
+# class BankDetailsSQL():
+# 	def __init__(self):
+# 		self.connection = mysql.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD)
+# 		# self.connection = sqlite3.connect("bankDetailsFile.db
+# 		self.cursor = self.connection.cursor()
+# 	def create(self):
+# 		customerId = input("Enter Account Number: ")
+# 		customerName = input("Enter Name: ")
+# 		customerBalance = input("Enter Balance: ")
+# 		self.cursor.execute("""INSERT INTO bankDetails VALUES (%s, %s, %s, %s);""", (customerId, customerName, customerBalance, deleteStatus))
+# 		self.connection.commit()
+# 	def display(self):
+# 		option = int(input("1. In Form Style and 2. Table Style: "))
+# 		if option == 1:
+# 			self.cursor.execute("SELECT * FROM bankDetails")
+# 			self.data = self.cursor.fetchall()
+# 			for values in self.data:
+# 				print("Account Number: ", values[0])
+# 				print("Name: ", values[1])
+# 				print("Balance: ", values[2])
+# 		else:
+# 			print(pd.read_sql_query("SELECT * FROM bankDetails ", self.connection))
+# 	def search(self):
+# 		accountNumberToSearch = input("Enter Account Number to search: ")
+# 		self.cursor.execute("""SELECT * FROM bankDetails WHERE customerId = (%s)""", (accountNumberToSearch, ))
+# 		self.data = self.cursor.fetchone()
+# 		print("accountNumber: ", self.data[0])
+# 		print("Name: ", self.data[1])
+# 		print("Balance: ", self.data[2])
+# 	def update(self):
+# 		self.cursor = self.connection.cursor()
+# 		accountNumberToSearch = input("Enter Account Number to search: ")
+# 		customerName = input("Enter Name: ")
+# 		customerBalance = input("Enter Balance: ")
+# 		self.cursor.execute('''UPDATE bankDetails SET customerName = %s, customerBalance = %s WHERE customerId = %s''', (customerName, customerBalance, accountNumberToSearch))
+# 		self.connection.commit()
+# 	def delete(self):
+# 		accountNumberToSearch = input("Enter Account Number to search: ")
+# 		try:
+# 			self.cursor.execute('''DELETE FROM bankDetails WHERE customerId = %s''', (accountNumberToSearch, ))
+# 			self.connection.commit()
+# 		except Exception as err:
+# 			# print("SELECT ErrorDescription FROM Error WHERE ErrorNumber = %s" %(err.sqlstate))
+# 			self.cursor.execute('''SELECT ErrorDescription FROM Error WHERE ErrorNumber = %s''' %(err.sqlstate))
+# 			deleteMessage = self.cursor.fetchall()
+# 			for message in deleteMessage:
+# 				for msg in message:
+# 					print(msg)
+# 			# print(err.errno)
+# 			# print(err.sqlstate)
+# 		print("Account closed")
+# 	def Exit(self):
+# 		self.connection.close()
+# 		exit()
+# g = BankDetailsSQL()
+# functions = [g.create, g.display, g.search, g.update, g.delete, g.Exit]
+# while functions != 6:
+# 	functions[int(input("1. Create1.\n2. Display.\n3. Search.\n4. Update\n5. Delete.\n6. Exit.\nChoice: "))-1]()
+# cursor.close()
+# connection.close()
 
 
 
@@ -160,60 +160,60 @@ connection.close()
 
 
 
-# # Classes
+# Classes
 
-# import sqlite3
-# import pandas as pd
+import sqlite3
+import pandas as pd
 
-# class BankDEtailsSQL():
-# 	def __init__(self):
-# 		self.connection = sqlite3.connect("bankDetailsFile.db")
-# 		self.cursor = self.connection.cursor()
-# 	def create(self):
-# 		customerId = input("Enter Account Number: ")
-# 		customerName = input("Enter Name: ")
-# 		customerBalance = input("Enter Balance: ")
-# 		deleteStatus = 1
-# 		self.cursor.execute("""INSERT INTO bankDetails VALUES (?, ?, ?)""", (customerId, customerName, customerBalance))
-# 		# self.cursor.execute("""INSERT INTO bankDetails VALUES (238, Satish, 768676)""")
-# 		self.connection.commit()
-# 	def display(self):
-# 		option = int(input("1. In Form Style and 2. Table Style: "))
-# 		if option == 1:
-# 			self.cursor.execute("SELECT * FROM bankDetails")
-# 			self.data = self.cursor.fetchall()
-# 			for values in self.data:
-# 				print("Account Number: ", values[0])
-# 				print("Name: ", values[1])
-# 				print("Balance: ", values[2])
-# 		else:
-# 			print(pd.read_sql_query("SELECT * FROM bankDetails ", self.connection))
-# 	def search(self):
-# 		accountNumberToSearch = input("Enter Account Number to search: ")
-# 		self.cursor.execute("""SELECT * FROM bankDetails WHERE accountNumber = (?)""", (accountNumberToSearch, ))
-# 		self.data = self.cursor.fetchone()
-# 		print("accountNumber: ", self.data[0])
-# 		print("Name: ", self.data[1])
-# 		print("Balance: ", self.data[2])
-# 	def update(self):
-# 		self.cursor = connection.cursor()
-# 		accountNumberToSearch = input("Enter Account Number to search: ")
-# 		customerName = input("Enter Name: ")
-# 		customerBalance = input("Enter Balance: ")
-# 		self.cursor.execute('''UPDATE bankDetails SET Name = ?, balance = ? WHERE accountNumber = ?''', (customerName, customerBalance, customerId))
-# 		self.connection.commit()
-# 	def delete(self):
-# 		accountNumberToSearch = input("Enter Account Number to search: ")
-# 		self.cursor.execute('''UPDATE bankDetails SET deleteStatus = 0 WHERE accountNumber = ?''', (accountNumberToSearch, ))
-# 		self.connection.commit()
-# 		print("Account closed")
-# 	def Exit(self):
-# 		self.connection.close()
-# 		exit()
-# g = BankDEtailsSQL()
-# functions = [g.create, g.display, g.search, g.update, g.delete, g.Exit]
-# while functions != 6:
-# 	functions[int(input("1. Create1.\n2. Display.\n3. Search.\n4. Update\n5. Delete.\n6. Exit.\nChoice: "))-1]()
+class BankDEtailsSQL():
+	def __init__(self):
+		self.connection = sqlite3.connect("bankDetailsFile.db")
+		self.cursor = self.connection.cursor()
+	def create(self):
+		customerId = input("Enter Account Number: ")
+		customerName = input("Enter Name: ")
+		customerBalance = input("Enter Balance: ")
+		deleteStatus = 1
+		self.cursor.execute("""INSERT INTO bankDetails VALUES (?, ?, ?)""", (customerId, customerName, customerBalance))
+		# self.cursor.execute("""INSERT INTO bankDetails VALUES (238, Satish, 768676)""")
+		self.connection.commit()
+	def display(self):
+		option = int(input("1. In Form Style and 2. Table Style: "))
+		if option == 1:
+			self.cursor.execute("SELECT * FROM bankDetails")
+			self.data = self.cursor.fetchall()
+			for values in self.data:
+				print("Account Number: ", values[0])
+				print("Name: ", values[1])
+				print("Balance: ", values[2])
+		else:
+			print(pd.read_sql_query("SELECT * FROM bankDetails ", self.connection))
+	def search(self):
+		accountNumberToSearch = input("Enter Account Number to search: ")
+		self.cursor.execute("""SELECT * FROM bankDetails WHERE accountNumber = (?)""", (accountNumberToSearch, ))
+		self.data = self.cursor.fetchone()
+		print("accountNumber: ", self.data[0])
+		print("Name: ", self.data[1])
+		print("Balance: ", self.data[2])
+	def update(self):
+		self.cursor = connection.cursor()
+		accountNumberToSearch = input("Enter Account Number to search: ")
+		customerName = input("Enter Name: ")
+		customerBalance = input("Enter Balance: ")
+		self.cursor.execute('''UPDATE bankDetails SET Name = ?, balance = ? WHERE accountNumber = ?''', (customerName, customerBalance, customerId))
+		self.connection.commit()
+	def delete(self):
+		accountNumberToSearch = input("Enter Account Number to search: ")
+		self.cursor.execute('''UPDATE bankDetails SET deleteStatus = 0 WHERE accountNumber = ?''', (accountNumberToSearch, ))
+		self.connection.commit()
+		print("Account closed")
+	def Exit(self):
+		self.connection.close()
+		exit()
+g = BankDEtailsSQL()
+functions = [g.create, g.display, g.search, g.update, g.delete, g.Exit]
+while functions != 6:
+	functions[int(input("1. Create1.\n2. Display.\n3. Search.\n4. Update\n5. Delete.\n6. Exit.\nChoice: "))-1]()
 
 # # Classes
 
